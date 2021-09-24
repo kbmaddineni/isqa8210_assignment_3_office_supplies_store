@@ -26,11 +26,6 @@ class ProfileAdmin(admin.ModelAdmin):
 admin.site.register(Profile, ProfileAdmin)
 
 
-def order_detail(obj):
-    return mark_safe('<a href="{}">View</a>'.format(
-        reverse('onlinestore:admin_order_detail', args=[obj.id])))
-
-
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     raw_id_fields = ['product']
@@ -40,6 +35,6 @@ class OrderItemInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['id', 'first_name', 'last_name', 'email',
                     'address', 'postal_code', 'city',
-                    'created', 'updated', order_detail]
+                    'created', 'updated']
     list_filter = ['created', 'updated']
     inlines = [OrderItemInline]
